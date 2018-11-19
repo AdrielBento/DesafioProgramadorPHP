@@ -1,0 +1,27 @@
+.icon-red {
+    color: #c4183c;
+}
+
+.categoria-remove {
+    cursor: pointer;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.cancel-update {
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #c4183c;
+}
+
+.icon-amarelo {
+    color: #ffb400;
+}
+
+
+.uma-semana {
+    background-color: #c4183c !important;
+    color: white !important;
+}
