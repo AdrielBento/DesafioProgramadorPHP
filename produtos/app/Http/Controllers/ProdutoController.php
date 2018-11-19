@@ -1,11 +1,10 @@
 <?php
-
-namespace produtos\Http\Controllers;
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Request;
-use produtos\Produto;
+use App\Produto;
 use Validator;
-use produtos\Http\Requests\ProdutoRequest;
+use App\Http\Requests\ProdutoRequest;
 
 class ProdutoController extends Controller{
 
@@ -17,7 +16,7 @@ class ProdutoController extends Controller{
 
     public function getProdutos(){
         $produtos = Produto::all();
-        return view('produto.listagem')->withProdutos($produtos);
+        return view('produto.gerenciaProdutos')->withProdutos($produtos);
     }
 
     public function getProduto($id){
