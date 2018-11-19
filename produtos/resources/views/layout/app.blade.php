@@ -2,8 +2,8 @@
 <html class="no-js h-100" lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Produto</title>
-    @yield('head')
+    <title></title>
+    @include('layout/head')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
@@ -12,12 +12,12 @@
         <div class="row">
             <!-- Sidebar -->
             <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
-                @yield('sidebar')
+                @include('layout/sidebar')
             </aside>
             <!-- End Sidebar -->
             <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
                 <!-- Navbar -->
-                @yield('navbar')
+                @include('layout/navbar')
                 <!-- END Navbar -->
                 <div class="main-content-container container-fluid px-4">
                     <!-- Page Header -->
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-   @yield('scripts')
+   @include('layout/scripts')
    <script  src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <script src="js/cadastroProduto.js"></script>
