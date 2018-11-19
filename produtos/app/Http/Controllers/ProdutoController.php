@@ -3,13 +3,13 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Produto;
-// use App\Http\Requests\ProdutoRequest;
+use App\Http\Requests\ProdutoRequest;
 use Validator;
 
 class ProdutoController extends Controller{
 
 
-    public function addProduto(Request $request){
+    public function addProduto(ProdutoRequest $request){
         $produto = new Produto($request->all());
         $produto->save();
         $idProduto = $produto->id;
@@ -26,7 +26,7 @@ class ProdutoController extends Controller{
         return response()->json(['status' => true,'produto'=>$produto]);
     }
 
-    public function update(Request $request){
+    public function update(ProdutoRequest $request){
 
          $params = $request->all();
          Produto::where('id',$params['id'])

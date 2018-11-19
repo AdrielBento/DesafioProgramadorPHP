@@ -25,6 +25,7 @@ class PedidoController extends Controller{
 
             $idPedido = DB::table("tb_pedido")->insertGetId(["total"=>$total,"dataPedido"=>$dataAtual]);
 
+            // Cria um array de parametros de itens de pedido
             foreach ($dados as $key) {
                 if($key["name"] == "pedido"){
                     $itensPedido[] = ["idProduto"=>$key["value"]["idProduto"],"idPedido"=>$idPedido,"quantidade"=>$key["value"]["quantidade"]];
@@ -53,10 +54,7 @@ class PedidoController extends Controller{
         $qtdProdutosPedidos = DB::table('tb_itens_pedido')->select('quantidade')->sum('quantidade');
         $totalPedidos = DB::table('tb_pedido')->count('id');
         $data = ['produtosPedidos'=>$qtdProdutosPedidos,'pedidos'=>$totalPedidos];
-
         return view('pedido.dashboard',['dashs'=>$data]);
-
-
     }
 
 }
