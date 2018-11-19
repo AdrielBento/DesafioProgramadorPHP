@@ -5,7 +5,7 @@
     <div class="col-lg-6">
     <div class="card card-small mb-4">
         <div class="card-header border-bottom">
-        <h6 class="m-0">Realiza Pedido</h6>
+        <h6 class="m-0">Pedido</h6>
         </div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item p-3">
@@ -15,8 +15,8 @@
                     <input type="hidden" id="token" name="_token"  value="{{csrf_token() }}">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="produto">Produto</label>
-                            <select id="produto" name="produto" class="form-control" required>
+                            <label for="produto">Realiza Pedido</label>
+                            <select id="produto" name="produto" class="form-control">
                                 <option selected disabled>Selecione...</option>
                                 @foreach ($produtos as $produto)
                                     <option value="{{$produto->id}}">{{$produto->nome}}</option>
@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="quantidade">Quantidade</label>
-                            <input type="number" class="form-control" id="quantidade" name="quantidade" required>
+                            <input type="number" class="form-control" id="quantidade" name="quantidade">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="quantidade">Add</label>

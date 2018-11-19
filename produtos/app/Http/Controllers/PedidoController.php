@@ -10,39 +10,35 @@ use Validator;
 class PedidoController extends Controller{
 
 
-    public function addPedido(PedidoRequest $request){
+    public function addPedido(Request $request){
 
         $params = $request->all();
-        $dataAtual = new DateTime();
+        $dados = $params["data"];
+        $dataAtual = new \DateTime();
         $itensPedido = $idsProdutos = Array();
-
-        foreach ($params as $key => $value) {
-
-        }
-
-        $precosProdutos = DB::table("tb_produto")->select("id,preco")->whereIn('id', [$idsProdutos])->get();
-
-        $total = array_reduce($precosProdutos, function($preco, $produto) {
-            $preco += $produto['preco'];
-            return $preco;
-        });
-
+        $total = intval($params["total"]);
 
         try {
 
-            $idPedido = DB::table("tb_pedido")->insertGetId(["total"=>$total,"data"=>$dataAtual]);
+            DB::beginTransaction();
 
-            foreach ($variable as $key => $value) {
-                $itensPedido[] = ["idProduto"=>$value,"idPedido"=>$idPedido,"quantidade"=>$value];
+            $idPedido = DB::table("tb_pedido")->insertGetId(["total"=>$total,"dataPedido"=>$dataAtual]);
+
+            foreach ($dados as $key) {
+                if($key["name"] == "pedido"){
+                    $itensPedido[] = ["idProduto"=>$key["value"]["idProduto"],"idPedido"=>$idPedido,"quantidade"=>$key["value"]["quantidade"]];
+                }
             }
 
-            DB::table("tb_itens_pedido")->insert([$itensPedido]);
+            DB::table("tb_itens_pedido")->insert($itensPedido);
+
+            DB::commit();
+            return response()->json(['status' => true]);
+
         } catch (\Throwable $th) {
-
+            DB::rollBack();
+            return response()->json(['status' => false,"message"=> $th->getMessage()]);
         }
-
-        Produto::create($request->all());
-        $produto->save();
     }
 
     public function index(){

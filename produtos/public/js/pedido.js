@@ -2,91 +2,61 @@ window.onbeforeunload = function (event) {
     localStorage.clear();
 };
 
-$("#aeddPedido").submit(function (e) {
+$("#efetuaPedido").submit(function (e) {
 
     e.preventDefault();
 
-    let table = $("table tbody").get(0);
-    let action = "new";
-    let actionMsg = "cadastra";
+    let tamanho = localStorage.length;
 
-    let produto = $("#produto").val();
-    let quantidade = $("#quantidade").val();
-
-
-    if ($("#cancel-update-produto").is(":visible")) {
-        action = "update";
-        actionMsg = "atualiza";
-        id = localStorage.getItem("idProduto");
-
+    if (tamanho <= 0) {
+        return false;
     }
 
+    let total = localStorage.getItem("total");
+    let form = Array();
+
+    for (let i = 0; i < tamanho; i++) {
+
+        let chave = localStorage.key(i);
+        if (chave != null && chave != "total") {
+
+            let produto = JSON.parse(localStorage.getItem(chave));
+
+            form.push({
+                name: "pedido",
+                value: {
+                    idProduto: chave,
+                    quantidade: produto.quantidade
+                }
+            })
+        }
+    }
 
     $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $("#token").val()
             },
-            url: `produtos/${action}`,
+            url: `pedido/new`,
             data: {
-                nome,
-                descricao,
-                sku,
-                preco,
-                id
+                data: form,
+                total
             },
             method: "POST",
             dataType: "json"
         })
         .done(function (res) {
-
-            if (id != "" && res.status) {
-
+            if (res.status) {
                 noty({
-                    text: `✔️ Produto atualizado`,
+                    text: "✔️ Pedido efetuado",
                     type: "success"
                 });
-
-                let idProduto = localStorage.getItem("idProduto");
-
-                $(`#produto-nome-${idProduto}`).text($("#nome").val());
-                $(`#produto-preco-${idProduto}`).text($("#preco").val());
-                $(`#produto-sku-${idProduto}`).text($("#sku").val());
-
-                $("##cancel-update-produto").trigger("click");
-                $("#addProduto").trigger("reset");
-
-            } else if (res.status) {
-
-                try {
-
-                    let tr = $("<tr>");
-                    let acoes = `<td><span class="produto-remove pointer" data-id="${res.idProduto}"><i class="icon-red fas fa-trash-alt"></i></span>`;
-                    acoes += `<span class="produto-update pointer" data-id="${res.idProduto}"><i class="fas fa-pen"></i></span></td>`;
-                    let tdPreco = `<td>${preco}</td>`;
-                    let tdSku = `<td>${sku}</td>`;
-                    let tdNome = $("<td>", {
-                        id: `produto-nome-${res.idProduto}`,
-                        text: `${nome}`
-                    });
-
-                    $(table).append($(tr).append(tdNome, tdSku, tdPreco, acoes));
-
-                } catch (error) {
-                    console.error("Não foi possivel adicionar na tabela", error);
-                }
-
-                noty({
-                    text: `✔️ Produto cadastrado`,
-                    type: "success"
-                });
-                $("#addProduto").trigger("reset");
-
             } else {
                 noty({
-                    text: `😕 Erro ao ${actionMsg}r o Produto`,
+                    text: " ❌ Ops,ocorreu um erro.Tente novamente",
                     type: "error"
                 });
             }
+
         }).fail(function (jqXHR, textStatus) {
             console.error(jqXHR, textStatus);
             noty({
@@ -214,7 +184,7 @@ function updateTotal() {
         let chave = localStorage.key(i);
         if (chave != null && chave != "total") {
             let pedido = JSON.parse(localStorage.getItem(chave));
-            total += (parseFloat(pedido.preco) * parseFloat(pedido.quantidade));
+            total += Math.round((parseFloat(pedido.preco) * parseFloat(pedido.quantidade)));
         }
     }
 
