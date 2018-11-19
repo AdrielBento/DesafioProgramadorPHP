@@ -16,3 +16,8 @@
 ## Telas
 
 ### Produtos
+![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/produtoGIf.gif)
+### Pedido
+![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/pedidoGIf.gif)
+### DashBoard
+![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/dashGIf.gif)
