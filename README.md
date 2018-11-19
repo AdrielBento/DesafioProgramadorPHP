@@ -21,3 +21,11 @@
 ![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/pedidoGif.gif)
 ### DashBoard
 ![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/dashGif.gif)
+
+
+### Tecnologias
+
+* jquery
+* PHP(Laravel)
+FrameWork CSS : ![Shards Dashboard Lite](https://designrevision.com/docs/shards-dashboard-lite/)
+* Mysql ![Script](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/scriptBD.sql)
