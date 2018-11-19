@@ -18,6 +18,6 @@
 ### Produtos
 ![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/produtoGIf.gif)
 ### Pedido
-![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/pedidoGIf.gif)
+![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/pedidoGif.gif)
 ### DashBoard
-![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/dashGIf.gif)
+![](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/dashGif.gif)
