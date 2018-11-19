@@ -1,17 +1,19 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use Request;
+use Illuminate\Http\Request;
 use App\Produto;
+// use App\Http\Requests\ProdutoRequest;
 use Validator;
-use App\Http\Requests\ProdutoRequest;
 
 class ProdutoController extends Controller{
 
 
-    public function addProduto(ProdutoRequest $request){
-        Produto::create($request->all());
+    public function addProduto(Request $request){
+        $produto = new Produto($request->all());
         $produto->save();
+        $idProduto = $produto->id;
+        return response()->json(['status' => true,'idProduto'=> $idProduto]);
     }
 
     public function getProdutos(){
@@ -19,16 +21,22 @@ class ProdutoController extends Controller{
         return view('produto.gerenciaProdutos')->withProdutos($produtos);
     }
 
-    public function getProduto($id){
+    public function getProduto(Request $request){
+        $id = $request->only("idProduto");
         $produto = Produto::find($id);
+        return response()->json(['status' => true,'produto'=>$produto[0]]);
     }
 
-    public function updateProduto(ProdutoRequest $request){
-        $produto = Produto::find($id);
-        return response()->json(['produto' => $produto]);
+    public function update(Request $request){
+
+         $params = $request->all();
+         Produto::where('id',$params['id'])
+                ->update(['nome'=>$params['nome'],'sku'=>$params['sku'],'descricao'=>$params['descricao'],'preco'=>$params['preco']]);
+
+           return response()->json(['status' => true]);
     }
 
-    public function removeProduto(ProdutoRequest $request){
+    public function remove($id){
 
         $produto = Produto::find($id);
         $status = true;
