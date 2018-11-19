@@ -38,15 +38,16 @@ class ProdutoController extends Controller{
     public function remove($id){
 
         $produto = Produto::find($id);
-        $status = true;
 
         try {
+            // Não se deleta produtos que já estejam em algum pedido
             $produto->delete();
+            return response()->json(['status' => true]);
         } catch (\Throwable $th) {
-            $status = false;
+
+            return response()->json(['status' => false,'message'=>$th->getMessage()]);
         }
 
-        return response()->json(['status' => $status]);
     }
 
 
