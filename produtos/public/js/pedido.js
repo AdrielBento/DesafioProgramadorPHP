@@ -1,7 +1,13 @@
+/**
+ * @description Limpa localStorage antes da pagina recarregar
+ */
 window.onbeforeunload = function (event) {
     localStorage.clear();
 };
 
+/**
+ * @description Pega os valores do pedido e envia para efetuar o pedido
+ */
 $("#efetuaPedido").submit(function (e) {
 
     e.preventDefault();
@@ -66,7 +72,10 @@ $("#efetuaPedido").submit(function (e) {
         });
 });
 
-
+/**
+ * @description Adiciona um novo produto ao pedido.Pega os valores do formulario  e adiciona no formulario
+ * e na tabela de produtos
+ */
 $("#addPedido").click(function (e) {
 
     let produto = $("#produto option:selected").text();
@@ -113,6 +122,7 @@ $("#addPedido").click(function (e) {
             let tdProduto = `<td id="pedido-produto-${idProduto}">${produto}</td>`;
             let tdQuantidade = `<td id="pedido-quantidade-${idProduto}">${quantidade}</td>`;
             let tdPreco = `<td id="pedido-preco-${idProduto}">${precoPedido}</td>`;
+
             $(table).append($(tr).append(tdProduto, tdQuantidade, tdPreco, acoes));
             $("#efetuaPedido").trigger("reset");
             updateTotal();
@@ -125,7 +135,7 @@ $("#addPedido").click(function (e) {
 });
 
 /**
- * @description Abre um dialog para confirmar a exclusao de um cliente
+ * @description Abre um dialog para confirmar a exclusao de um produto no pedido e atualiza o total do pedido
  */
 $(document).on("click", ".pedido-remove", function (e) {
 
@@ -141,6 +151,9 @@ $(document).on("click", ".pedido-remove", function (e) {
 
 });
 
+/**
+ * @description Pega a quantidade do produto no localStorage para atualizar
+ */
 $(document).on("click", ".pedido-update", function (e) {
 
     let idProduto = $(this).data("id");
@@ -153,7 +166,9 @@ $(document).on("click", ".pedido-update", function (e) {
 
 });
 
-
+/**
+ * @description Atualiza os valores do pedido,como quantidade do produto e valor total
+ */
 $(document).on("click", "#updatePedido", function (e) {
 
     let idProduto = $("#produto").val();
@@ -165,15 +180,28 @@ $(document).on("click", "#updatePedido", function (e) {
         preco: produto.preco
     }));
 
+    if (quantidade == "" || quantidade <= 0) {
+        noty({
+            text: `Quantidade deve ser maior que Zero`,
+            type: "warning"
+        });
+
+        return false;
+    }
+
+    let valorProduto = (quantidade * produto.preco);
     $("#produto").prop('disabled', false);
     $(`#pedido-quantidade-${idProduto}`).text(quantidade);
-    $(`#pedido-preco-${idProduto}`).text((quantidade * produto.preco));
+    $(`#pedido-preco-${idProduto}`).text((valorProduto).toFixed(2));
     $("#updatePedido").hide();
     $("#addPedido").show();
     updateTotal();
 
 });
 
+/**
+ * @description Recalcula o valor total do pedido percorrendo o localStorage
+ */
 function updateTotal() {
 
     let tamanho = localStorage.length;
@@ -184,15 +212,19 @@ function updateTotal() {
         let chave = localStorage.key(i);
         if (chave != null && chave != "total") {
             let pedido = JSON.parse(localStorage.getItem(chave));
-            total += Math.round((parseFloat(pedido.preco) * parseFloat(pedido.quantidade)));
+            let multi = (pedido.preco * pedido.quantidade);
+            total += multi;
         }
     }
 
     localStorage.setItem("total", total);
-    $("#total").text(total);
+    $("#total").text(total.toFixed(2));
 }
 
-
+/**
+ * @description Notificão
+ * @param {Object} config {text:Mensagem da notificao,type:Tipo de notificacao ex:'success'}
+ */
 function noty(config) {
     let {
         text,
