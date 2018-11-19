@@ -1,14 +1,13 @@
 <?php
-
-namespace produtos\Http\Controllers;
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use Request;
-use produtos\Produto;
-use Validator;
-use DB;
-// use estoque\Http\Requests\ProdutoRequest;
+use Illuminate\Http\Request;
+use App\Produto;
+use App\Pedido;
 
-class ProdutoController extends Controller{
+use Validator;
+
+class PedidoController extends Controller{
 
 
     public function addPedido(PedidoRequest $request){
@@ -41,22 +40,14 @@ class ProdutoController extends Controller{
         } catch (\Throwable $th) {
 
         }
-        
+
         Produto::create($request->all());
         $produto->save();
     }
 
-    public function getProdutos(){
+    public function index(){
         $produtos = Produto::all();
-        return view('produto.listagem')->withProdutos($produtos);
+        return view('pedido.index')->withProdutos($produtos);
     }
-
-    public function getProduto($id){
-
-        $produto = Produto::find($id);
-    }
-
-
-
 
 }

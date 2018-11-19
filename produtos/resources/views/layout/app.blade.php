@@ -6,6 +6,7 @@
     @include('layout/head')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
 </head>
 <body class="h-100">
     <div class="container-fluid">
@@ -41,6 +42,7 @@
    @include('layout/scripts')
    <script  src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <script src="js/pedido.js"></script>
    <script src="js/cadastroProduto.js"></script>
 </body>
 </html>

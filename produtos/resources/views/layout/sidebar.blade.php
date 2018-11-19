@@ -19,15 +19,15 @@
         </a>
      </li>
      <li class="nav-item">
-        <a class="nav-link active" href="Gerente?action=listFuncionarioGerente">
+        <a class="nav-link active" href="produtos">
             <i class="fas fa-users fa-lg"></i>
-            <span>Usuarios</span>
+            <span>Produto</span>
         </a>
      </li>
      <li class="nav-item">
         <a class="nav-link active " href="Gerente?action=getAtendimentos">
         <i class="fas fa-headset"></i>
-            <span>Atendimentos</span>
+            <span>Pedido</span>
         </a>
      </li>
    </ul>

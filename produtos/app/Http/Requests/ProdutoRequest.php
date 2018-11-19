@@ -1,6 +1,6 @@
 <?php
 
-namespace estoque\Http\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,10 +24,10 @@ class ProdutoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'=> 'required|min:1',
-            'descricao'=> 'required|max:255|min:1',
-            'preco'=> 'required|min:numeric',
-            'sku'=> 'required|max:10'
+            'nome'=> 'required',
+            'descricao'=> 'required',
+            'preco'=> 'required',
+            'sku'=> 'required'
         ];
     }
 
@@ -35,7 +35,5 @@ class ProdutoRequest extends FormRequest
         return[
             'required' => 'O :attribute é obrigatorio'
         ];
-
-
     }
 }

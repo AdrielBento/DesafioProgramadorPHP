@@ -21,10 +21,9 @@ class ProdutoController extends Controller{
         return view('produto.gerenciaProdutos')->withProdutos($produtos);
     }
 
-    public function getProduto(Request $request){
-        $id = $request->only("idProduto");
+    public function getProduto($id){
         $produto = Produto::find($id);
-        return response()->json(['status' => true,'produto'=>$produto[0]]);
+        return response()->json(['status' => true,'produto'=>$produto]);
     }
 
     public function update(Request $request){
