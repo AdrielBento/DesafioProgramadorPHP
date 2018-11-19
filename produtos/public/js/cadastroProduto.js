@@ -58,7 +58,7 @@ $("#addProduto").submit(function (e) {
             $(`#produto-preco-${idProduto}`).text($("#preco").val());
             $(`#produto-sku-${idProduto}`).text($("#sku").val());
 
-            $("##cancel-update-produto").trigger("click");
+            $("#cancel-update-produto").trigger("click");
             $("#addProduto").trigger("reset");
 
         } else if (res.status) {

@@ -121,7 +121,7 @@ $("#addPedido").click(function (e) {
             acoes += `<span class="pedido-update pointer" data-id="${idProduto}"><i class="fas fa-pen"></i></span></td>`;
             let tdProduto = `<td id="pedido-produto-${idProduto}">${produto}</td>`;
             let tdQuantidade = `<td id="pedido-quantidade-${idProduto}">${quantidade}</td>`;
-            let tdPreco = `<td id="pedido-preco-${idProduto}">${precoPedido}</td>`;
+            let tdPreco = `<td id="pedido-preco-${idProduto}">${precoPedido.toFixed(2)}</td>`;
 
             $(table).append($(tr).append(tdProduto, tdQuantidade, tdPreco, acoes));
             $("#efetuaPedido").trigger("reset");
