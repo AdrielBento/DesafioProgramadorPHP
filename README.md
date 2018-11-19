@@ -25,7 +25,11 @@
 
 ### Tecnologias
 
-* jquery
+* Javascript:
+  - Jquery
+  - Noty
+  - SweetAlert
+  - ChartJs
 * PHP(Laravel)
-FrameWork CSS : [Shards Dashboard Lite](https://designrevision.com/docs/shards-dashboard-lite/)
+* FrameWork CSS : [Shards Dashboard Lite](https://designrevision.com/docs/shards-dashboard-lite/)
 * Mysql - [script](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/scriptBD.sql)
