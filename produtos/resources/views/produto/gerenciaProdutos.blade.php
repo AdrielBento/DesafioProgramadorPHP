@@ -1,7 +1,13 @@
 @extends('layout.app')
 
 @section('content')
-
+<div class="page-header row no-gutters py-4">
+        <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+            <span class="text-uppercase page-subtitle">Overview</span>
+            <h3 class="page-title">Produtos</h3>
+        </div>
+    </div>
+<div class="row">
     <div class="col-lg-6">
     <div class="card card-small mb-4">
         <div class="card-header border-bottom">
@@ -86,5 +92,6 @@
         </div>
     </div>
     </div>
+</div>
 
 @stop

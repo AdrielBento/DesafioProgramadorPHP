@@ -1,11 +1,17 @@
 @extends('layout.app')
 
 @section('content')
-
+<div class="page-header row no-gutters py-4">
+        <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+            <span class="text-uppercase page-subtitle">Overview</span>
+            <h3 class="page-title">Pedido</h3>
+        </div>
+    </div>
+<div class="row">
     <div class="col-lg-6">
     <div class="card card-small mb-4">
         <div class="card-header border-bottom">
-        <h6 class="m-0">Pedido</h6>
+        <h6 class="m-0">Efetuar pedido</h6>
         </div>
         <ul class="list-group list-group-flush">
         <li class="list-group-item p-3">
@@ -61,9 +67,7 @@
                 </tr>
                 </thead>
                 <tbody>
-
                 </tbody>
-
                 <tfoot>
                     <tr>
                         <th scope="col" class="border-bottom-0">Total:</th>
@@ -76,18 +80,5 @@
             </div>
         </div>
     </div>
+</div>
 @stop
-
-
-{{-- <tr>
-        <td id="produto-nome-{{$produto->id}}">{{$produto->nome}}</td>
-        <td id="produto-preco-{{$produto->id}}">{{$produto->preco}}</td>
-        <td>
-            <span class="produto-remove pointer" data-id="{{$produto->id}}">
-            <i class="icon-red fas fa-trash-alt"></i>
-            </span>
-            <span class="produto-update pointer" data-id="{{$produto->id}}">
-            <i class="fas fa-pen"></i>
-            </span>
-        </td>
-    </tr> --}}

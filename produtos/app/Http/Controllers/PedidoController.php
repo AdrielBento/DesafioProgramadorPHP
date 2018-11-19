@@ -14,9 +14,10 @@ class PedidoController extends Controller{
 
         $params = $request->all();
         $dados = $params["data"];
+        $total = intval($params["total"]);
+
         $dataAtual = new \DateTime();
         $itensPedido = $idsProdutos = Array();
-        $total = intval($params["total"]);
 
         try {
 
@@ -44,6 +45,18 @@ class PedidoController extends Controller{
     public function index(){
         $produtos = Produto::all();
         return view('pedido.index')->withProdutos($produtos);
+    }
+
+
+    public function dashboard(Request $request){
+
+        $qtdProdutosPedidos = DB::table('tb_itens_pedido')->select('quantidade')->sum('quantidade');
+        $totalPedidos = DB::table('tb_pedido')->count('id');
+        $data = ['produtosPedidos'=>$qtdProdutosPedidos,'pedidos'=>$totalPedidos];
+
+        return view('pedido.dashboard',['dashs'=>$data]);
+
+
     }
 
 }
