@@ -27,5 +27,5 @@
 
 * jquery
 * PHP(Laravel)
-FrameWork CSS : ![Shards Dashboard Lite](https://designrevision.com/docs/shards-dashboard-lite/)
-* Mysql ![Script](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/scriptBD.sql)
+FrameWork CSS : [Shards Dashboard Lite](https://designrevision.com/docs/shards-dashboard-lite/)
+* Mysql - [script](https://github.com/AdrielBento/DesafioProgramadorPHP/blob/master/scriptBD.sql)
