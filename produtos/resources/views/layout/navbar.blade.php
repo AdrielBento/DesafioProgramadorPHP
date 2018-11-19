@@ -1,4 +1,6 @@
-@section('content')
+@extends('layout.app')
+
+@section('navbar')
 <div class="main-navbar sticky-top bg-white">
 
     <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">

@@ -1,3 +1,7 @@
+@extends('layout.app')
+
+@section('sidebar')
+
 <div class="main-navbar">
    <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
      <a class="navbar-brand w-100 mr-0" href="Gerente" style="line-height: 25px;">
@@ -32,3 +36,4 @@
      </li>
    </ul>
  </div>
+ @endsection
