@@ -1,5 +1,7 @@
 <?php
 
+Route::get('/','PedidoController@dashboard');
+
 Route::get('/pedido', 'PedidoController@index');
 Route::post('/pedido/new', 'PedidoController@addPedido');
 Route::get('/pedido/dash', 'PedidoController@dashboard');
